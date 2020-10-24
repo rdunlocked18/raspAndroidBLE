@@ -44,6 +44,10 @@ dependencies {
     //volley
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.android.volley:volley:1.1.1'
+    //internal biometric
+    implementation 'androidx.biometric:biometric:1.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
 
 
 
