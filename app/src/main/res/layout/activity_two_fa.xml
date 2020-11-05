@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityTwoFa"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+  <ImageView
+      android:layout_width="200dp"
+      android:layout_height="200dp"
+      android:src="@drawable/fatwo"
+      android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:text="MultiFactor Auth"
+        android:textColor="@color/colorPrimary"
+        android:textSize="28dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Use The On device Methods to Validate Identity"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15dp"
+        />
+
+    <ProgressBar
+        android:layout_marginTop="50dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        />
+
+    <TextView
+        android:id="@+id/macSp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Macid"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Status Is fetching for 2 Mins and then You'll be logged out Automatically !! Else Connection Page Will Appear !"
+        android:layout_marginTop="20dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        />
+
+</LinearLayout>

@@ -2,6 +2,7 @@ package de.rcoemcs.iotbase.Logins;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -49,10 +50,12 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.Executor;
 
+import de.rcoemcs.iotbase.ActivityTwoFa;
 import de.rcoemcs.iotbase.MainActivity;
 import de.rcoemcs.iotbase.databinding.ActivityLoginScreenBinding;
 
 public class LoginScreen extends AppCompatActivity {
+        //status url : http://iotrest.herokuapp.com/api/statusfetcher?macid=11:00:0A:BB:28:FC
 
     private static final String TAG = "Login Screen ";
     ActivityLoginScreenBinding activityLoginScreenBinding;
@@ -62,6 +65,8 @@ public class LoginScreen extends AppCompatActivity {
     private Executor executor;
     private BiometricPrompt biometricPrompt;
     private BiometricPrompt.PromptInfo promptInfo;
+    SharedPreferences preferences;
+    SharedPreferences.Editor editor;
 
 
     @RequiresApi(api = Build.VERSION_CODES.P)
@@ -73,6 +78,8 @@ public class LoginScreen extends AppCompatActivity {
         setContentView(view);
 
         requestQueue = Volley.newRequestQueue(getApplicationContext());
+        preferences = getSharedPreferences("macStore", 0);
+        editor = preferences.edit();
 
         handlePermissions();
 
@@ -153,18 +160,24 @@ public class LoginScreen extends AppCompatActivity {
                                     //sending macid as static
                                     if (jsonObject.getString("userName").equals("varun")) {
                                         _MACID = "11:20:0A:BB:28:FC";
-
+                                        editor.putString("macId",_MACID);
                                     } else if (jsonObject.getString("userName").equals("rohit")) {
                                         _MACID = "00:00:0A:BB:28:FC";
+                                        editor.putString("macId",_MACID);
                                     } else if (jsonObject.getString("userName").equals("srihari")) {
                                         _MACID = "BA:9E:1D:6E:93:10";
+                                        editor.putString("macId",_MACID);
                                     } else if (jsonObject.getString("userName").equals("suraj")) {
                                         _MACID = "AB:0C:05:BF:3B:89";
+                                        editor.putString("macId",_MACID);
                                     } else if (jsonObject.getString("userName").equals("pritesh")) {
                                         _MACID = "9C:F4:B5:65:14:C0";
+                                        editor.putString("macId",_MACID);
                                     }else  {
                                         _MACID = "00:00:00:00:20";//default
+                                        editor.putString("macId",_MACID);
                                     }
+                                    editor.apply();
                                     //mac end
                                     Snackbar.make(activityLoginScreenBinding.getRoot(), "Valid User .. Getting Inside..", Snackbar.LENGTH_SHORT)
                                             .show();
@@ -172,7 +185,7 @@ public class LoginScreen extends AppCompatActivity {
 
                                   PostOperation();
                                     Handler handler = new Handler();
-                                    handler.postDelayed(() -> startActivity(new Intent(LoginScreen.this, MainActivity.class)),1000);
+                                    handler.postDelayed(() -> startActivity(new Intent(LoginScreen.this, ActivityTwoFa.class)),1500);
 
 
 
@@ -204,7 +217,8 @@ public class LoginScreen extends AppCompatActivity {
 
     public String currentDateTime() {
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat dateformat = new SimpleDateFormat("hh:mm:ss");
+        SimpleDateFormat dateformat = new SimpleDateFormat("HH:mm:ss");
+
         String datetime = dateformat.format(c.getTime());
         return datetime;
 
